@@ -1,3 +1,2 @@
 julia 1.0
-LinearAlgebra
 StaticArrays 0.8.2

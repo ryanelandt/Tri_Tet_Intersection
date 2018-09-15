@@ -1,6 +1,6 @@
 ### Triangle ###
 triangleCross(t::Triangle{T}) where {T} = cross(t.v2 - t.v1, t.v3 - t.v2)
-area(t::Triangle{T}) where {T} = norm(triangleCross(t)) * 0.5
+area(t::Triangle{T}) where {T} = LinearAlgebra.norm(triangleCross(t)) * 0.5
 centroid(t::Triangle{T}) where {T} = (t.v1 + t.v2 + t.v3) * Float64(1/3)  # 4 times faster than dividing by 3
 
 ### Tetrahedron ###
@@ -30,4 +30,4 @@ function asMatOnePad(t::Tetrahedron{T}) where {T}
     return A
 end
 centroid(t::Tetrahedron{T}) where {T} = (t.v1 + t.v2 + t.v3 + t.v4) * 0.25
-verifyVolume(t::Tetrahedron{T}) where {T} = det(asMatOnePad(t)) * Float64(-1/6)  # TODO: move to test/test_util.jl
+verifyVolume(t::Tetrahedron{T}) where {T} = LinearAlgebra.det(asMatOnePad(t)) * Float64(-1/6)  # TODO: move to test/test_util.jl

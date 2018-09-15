@@ -3,7 +3,7 @@ __precompile__(true)
 module Tri_Tet_Intersection
 
 using StaticArrays
-# using 
+using LinearAlgebra
 
 # import
 

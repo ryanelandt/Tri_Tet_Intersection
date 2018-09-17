@@ -1,9 +1,18 @@
 ### Triangle ###
 triangleCross(t::Triangle{T}) where {T} = cross(t.v2 - t.v1, t.v3 - t.v2)
 area(t::Triangle{T}) where {T} = LinearAlgebra.norm(triangleCross(t)) * 0.5
+function area(sv::SVector{3,SVector{3,Float64}})
+    t = Triangle(sv[1], sv[2], sv[3])
+    return area(t)
+end
 centroid(t::Triangle{T}) where {T} = (t.v1 + t.v2 + t.v3) * Float64(1/3)  # 4 times faster than dividing by 3
+function centroid(sv::SVector{3,SVector{3,Float64}})
+    t = Triangle(sv[1], sv[2], sv[3])
+    return centroid(t)
+end
 
 ### Tetrahedron ###
+verifyVolume(t::Tetrahedron{T}) where {T} = LinearAlgebra.det(asMatOnePad(t)) * Float64(-1/6)  # TODO: move to test/test_util.jl
 function volume(t::Tetrahedron{T}) where {T}
     # NOTE: This is an algebraic refactorization of a symbolic answer
     a1, a2, a3 = t.v1[1], t.v1[2], t.v1[3]
@@ -20,6 +29,10 @@ function volume(t::Tetrahedron{T}) where {T}
     V = muladd(c3 - d3,    a2 * b1 - a1 * b2, V)
     return V * Float64(1/6)
 end
+function volume(sv::SVector{4,SVector{3,Float64}})
+    t = Tetrahedron(sv[1], sv[2], sv[3], sv[4])
+    return volume(t)
+end
 function asMatOnePad(t::Tetrahedron{T}) where {T}
     A = @SMatrix [
     t.v1[1] t.v2[1] t.v3[1] t.v4[1];
@@ -30,4 +43,7 @@ function asMatOnePad(t::Tetrahedron{T}) where {T}
     return A
 end
 centroid(t::Tetrahedron{T}) where {T} = (t.v1 + t.v2 + t.v3 + t.v4) * 0.25
-verifyVolume(t::Tetrahedron{T}) where {T} = LinearAlgebra.det(asMatOnePad(t)) * Float64(-1/6)  # TODO: move to test/test_util.jl
+function centroid(sv::SVector{4,SVector{3,Float64}})
+    t = Tetrahedron(sv[1], sv[2], sv[3], sv[4])
+    return centroid(t)
+end

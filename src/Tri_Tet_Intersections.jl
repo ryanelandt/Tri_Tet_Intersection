@@ -21,6 +21,7 @@ export
     triangleCross,
     area,
     centroid,
-    verifyVolume
+    verifyVolume,
+    triangleNormal
 
 end

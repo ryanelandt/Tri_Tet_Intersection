@@ -1,4 +1,8 @@
 ### Triangle ###
+function triangleCross(sv::SVector{3,SVector{3,Float64}})
+    t = Triangle(sv[1], sv[2], sv[3])
+    return triangleCross(t)
+end
 triangleCross(t::Triangle{T}) where {T} = cross(t.v2 - t.v1, t.v3 - t.v2)
 area(t::Triangle{T}) where {T} = LinearAlgebra.norm(triangleCross(t)) * 0.5
 function area(sv::SVector{3,SVector{3,Float64}})

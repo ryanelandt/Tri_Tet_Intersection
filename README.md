@@ -1,6 +1,6 @@
-# Tri_Tet_Intersection
+# Tri_Tet_Intersections.jl
 
-[![Build Status](https://travis-ci.com/ryanelandt/Tri_Tet_Intersection.svg?branch=master)](https://travis-ci.com/ryanelandt/Tri_Tet_Intersection.jl)
-[![codecov.io](https://codecov.io/github/ryanelandt/Tri_Tet_Intersection.jl/coverage.svg?branch=master)](https://codecov.io/github/ryanelandt/Tri_Tet_Intersection.jl?branch=master)
+[![Build Status](https://travis-ci.com/ryanelandt/Tri_Tet_Intersections.jl.svg?branch=master)](https://travis-ci.com/ryanelandt/Tri_Tet_Intersections.jl)
+[![codecov.io](https://codecov.io/github/ryanelandt/Tri_Tet_Intersections.jl/coverage.svg?branch=master)](https://codecov.io/github/ryanelandt/Tri_Tet_Intersections.jl?branch=master)
 
-Computes the intersection between a triangle and a tetrahedron.
+Computes intersections between triangles and tetrahedrons.

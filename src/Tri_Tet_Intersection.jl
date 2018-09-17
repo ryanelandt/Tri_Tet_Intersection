@@ -1,6 +1,6 @@
 __precompile__(true)
 
-module Tri_Tet_Intersection
+module Tri_Tet_Intersections
 
 using StaticArrays
 using LinearAlgebra

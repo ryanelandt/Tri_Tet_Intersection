@@ -18,6 +18,7 @@ export
     # utility.jl
     volume,
     asMatOnePad,
+    asMat,
     triangleCross,
     area,
     centroid,

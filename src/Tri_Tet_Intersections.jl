@@ -9,6 +9,7 @@ using LinearAlgebra
 
 include("types.jl")
 include("utility.jl")
+include("clipped_polygon.jl")
 
 export
     # types.jl
@@ -23,6 +24,15 @@ export
     area,
     centroid,
     verifyVolume,
-    triangleNormal
+    triangleNormal,
+
+    # clipped_polygon.jl
+    ClippedPolygon,
+    weightPoly,
+    add!,
+    setTriangleTetMutable,
+    modularTriTetClip,
+    clipTriangleWithOneTetPlane,
+    tet_clip_poly_to_cartesian
 
 end

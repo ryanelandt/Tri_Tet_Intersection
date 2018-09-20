@@ -5,7 +5,6 @@ module Tri_Tet_Intersections
 using StaticArrays
 using LinearAlgebra
 
-# import
 
 include("types.jl")
 include("utility.jl")
@@ -23,7 +22,6 @@ export
     triangleCross,
     area,
     centroid,
-    verifyVolume,
     triangleNormal,
 
     # clipped_polygon.jl
@@ -33,6 +31,6 @@ export
     setTriangleTetMutable,
     modularTriTetClip,
     clipTriangleWithOneTetPlane,
-    tet_clip_poly_to_cartesian
+    tet_clip_poly_to_cartesian!
 
 end

@@ -1,7 +1,5 @@
 verifyVolume(t::Tetrahedron{T}) where {T} = LinearAlgebra.det(asMatOnePad(t)) * Float64(-1/6)
 
-using Test
-
 v1 = SVector{3,Float64}(0.0, 0.0, 0.0)
 v2 = SVector{3,Float64}(1.0, 0.0, 0.0)
 v3 = SVector{3,Float64}(0.0, 1.0, 0.0)

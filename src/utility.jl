@@ -25,8 +25,12 @@ end
 
 for funName in (:triangleCross, :area, :centroid, :triangleNormal, :asMatOnePad, :asMat)
     @eval begin
-        function $funName(sv::SVector{T,SVector{3,Float64}}) where {T}
+        function $funName(sv::SVector{3,SVector{3,T}}) where {T}
             t = Triangle(sv[1], sv[2], sv[3])
+            return $funName(t)
+        end
+        function $funName(sv_1::SVector{3,T}, sv_2::SVector{3,T}, sv_3::SVector{3,T}) where {T}
+            t = Triangle(sv_1, sv_2, sv_3)
             return $funName(t)
         end
     end
@@ -73,8 +77,12 @@ end
 
 for funName in (:volume, :centroid, :asMatOnePad, :asMat)
     @eval begin
-        function $funName(sv::SVector{4,SVector{T,Float64}}) where {T}
+        function $funName(sv::SVector{4,SVector{4,T}}) where {T}
             t = Tetrahedron(sv[1], sv[2], sv[3], sv[4])
+            return $funName(t)
+        end
+        function $funName(sv_1::SVector{4,T}, sv_2::SVector{4,T}, sv_3::SVector{4,T}, sv_4::SVector{4,T}) where {T}
+            t = Tetrahedron(sv_1, sv_2, sv_3, sv_4)
             return $funName(t)
         end
     end

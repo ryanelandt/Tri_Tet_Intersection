@@ -1,4 +1,4 @@
-struct ClippedPolygon{N,T}
+mutable struct ClippedPolygon{N,T}
     v::MVector{7,SVector{N,T}}
     i::Int64
     function ClippedPolygon{N,T}() where {N,T}

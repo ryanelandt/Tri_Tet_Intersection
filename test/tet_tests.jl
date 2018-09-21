@@ -10,7 +10,6 @@ v4 = SVector{3,Float64}(0.0, 0.0, 1.0)
     tet_Tet = (Tetrahedron(tet_Tup...),)
     tet_SV  = (SVector{4,SVector{3,Float64}}(tet_Tup...),)
     for tet_rep = (tet_Tet, tet_SV, tet_Tup)
-        println("tet_rep: ", tet_rep)
         @test volume(tet_rep...) ≈ 1/6
         @test centroid(tet_rep...) ≈ SVector{3,Float64}(1,1,1)/4
     end

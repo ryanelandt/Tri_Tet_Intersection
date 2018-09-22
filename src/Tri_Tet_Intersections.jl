@@ -19,6 +19,7 @@ export
     volume,
     asMatOnePad,
     asMat,
+    getTop,
     triangleCross,
     area,
     centroid,

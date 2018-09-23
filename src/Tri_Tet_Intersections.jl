@@ -33,7 +33,7 @@ export
     setTriangleTetMutable,
     modularTriTetClip,
     clipTriangleWithOneTetPlane,
-    tet_clip_poly_to_cartesian!
+    tet_clip_poly_to_cartesian!,
 
     # quadrature.jl
     TriTetQuadRule,

@@ -9,6 +9,7 @@ using LinearAlgebra
 include("types.jl")
 include("utility.jl")
 include("clipped_polygon.jl")
+include("quadrature.jl")
 
 export
     # types.jl

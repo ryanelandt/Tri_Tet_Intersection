@@ -1,8 +1,8 @@
-struct obj_quad_rule{N_zeta, N_point}
+struct TriTetQuadRule{N_zeta, N_point}
     zeta::NTuple{N_point, SVector{N_zeta, Float64}}
     w::NTuple{N_point, Float64}
     the_degree::Int64
-    function obj_quad_rule{N_zeta, N_point}(a, b, c)  where {N_zeta, N_point}
+    function TriTetQuadRule{N_zeta, N_point}(a, b, c)  where {N_zeta, N_point}
         return new{N_zeta, N_point}(a, b, c)
     end
 end
@@ -15,7 +15,7 @@ function getTriQuadRule(n_rule::Int64)
         w = zeros(n_quad_points)
         w[1] = 1.00000000000000000000
         the_degree = 1
-        return obj_quad_rule{3, n_quad_points}(Tuple(p), Tuple(w), the_degree)
+        return TriTetQuadRule{3, n_quad_points}(Tuple(p), Tuple(w), the_degree)
     elseif n_rule == 2
         n_quad_points = 3
         p = Vector{SVector{3, Float64}}(undef, n_quad_points)
@@ -27,7 +27,7 @@ function getTriQuadRule(n_rule::Int64)
         w[2] = 0.33333333333333331483
         w[3] = 0.33333333333333331483
         the_degree = 2
-        return obj_quad_rule{3, n_quad_points}(Tuple(p), Tuple(w), the_degree)
+        return TriTetQuadRule{3, n_quad_points}(Tuple(p), Tuple(w), the_degree)
     elseif n_rule == 3
         n_quad_points = 6
         p = Vector{SVector{3, Float64}}(undef, n_quad_points)
@@ -45,7 +45,7 @@ function getTriQuadRule(n_rule::Int64)
         w[5] = 0.22338158967801147181
         w[6] = 0.10995174365532188465
         the_degree = 3
-        return obj_quad_rule{3, n_quad_points}(Tuple(p), Tuple(w), the_degree)
+        return TriTetQuadRule{3, n_quad_points}(Tuple(p), Tuple(w), the_degree)
     elseif n_rule == 4
         n_quad_points = 6
         p = Vector{SVector{3, Float64}}(undef, n_quad_points)
@@ -63,7 +63,7 @@ function getTriQuadRule(n_rule::Int64)
         w[5] = 0.22338158967801147181
         w[6] = 0.10995174365532188465
         the_degree = 4
-        return obj_quad_rule{3, n_quad_points}(Tuple(p), Tuple(w), the_degree)
+        return TriTetQuadRule{3, n_quad_points}(Tuple(p), Tuple(w), the_degree)
     elseif n_rule == 5
         n_quad_points = 7
         p = Vector{SVector{3, Float64}}(undef, n_quad_points)
@@ -83,7 +83,7 @@ function getTriQuadRule(n_rule::Int64)
         w[6] = 0.12593918054482713953
         w[7] = 0.13239415278850619195
         the_degree = 5
-        return obj_quad_rule{3, n_quad_points}(Tuple(p), Tuple(w), the_degree)
+        return TriTetQuadRule{3, n_quad_points}(Tuple(p), Tuple(w), the_degree)
     else
         error()
     end
@@ -103,7 +103,7 @@ function getTetQuadRule(n_rule::Int64)
         w[3] = 0.25000000000000000000
         w[4] = 0.25000000000000000000
         the_degree = 2
-        return obj_quad_rule{4, n_quad_points}(Tuple(p), Tuple(w), the_degree)
+        return TriTetQuadRule{4, n_quad_points}(Tuple(p), Tuple(w), the_degree)
     elseif n_rule == 2
         n_quad_points = 5
         p = Vector{SVector{4, Float64}}(undef, n_quad_points)
@@ -119,7 +119,7 @@ function getTetQuadRule(n_rule::Int64)
         w[4] = 0.45000000000000001110
         w[5] = 0.45000000000000001110
         the_degree = 3
-        return obj_quad_rule{4, n_quad_points}(Tuple(p), Tuple(w), the_degree)
+        return TriTetQuadRule{4, n_quad_points}(Tuple(p), Tuple(w), the_degree)
     elseif n_rule == 3
         n_quad_points = 16
         p = Vector{SVector{4, Float64}}(undef, n_quad_points)
@@ -157,7 +157,7 @@ function getTetQuadRule(n_rule::Int64)
         w[15] = 0.06654206863329238664
         w[16] = 0.06654206863329238664
         the_degree = 4
-        return obj_quad_rule{4, n_quad_points}(Tuple(p), Tuple(w), the_degree)
+        return TriTetQuadRule{4, n_quad_points}(Tuple(p), Tuple(w), the_degree)
     elseif n_rule == 4
         n_quad_points = 17
         p = Vector{SVector{4, Float64}}(undef, n_quad_points)
@@ -197,7 +197,7 @@ function getTetQuadRule(n_rule::Int64)
         w[16] = 0.04528559236327398679
         w[17] = 0.04528559236327398679
         the_degree = 5
-        return obj_quad_rule{4, n_quad_points}(Tuple(p), Tuple(w), the_degree)
+        return TriTetQuadRule{4, n_quad_points}(Tuple(p), Tuple(w), the_degree)
     elseif n_rule == 5
         n_quad_points = 29
         p = Vector{SVector{4, Float64}}(undef, n_quad_points)
@@ -261,7 +261,7 @@ function getTetQuadRule(n_rule::Int64)
         w[28] = 0.04361493840666567923
         w[29] = 0.02581167596199161057
         the_degree = 6
-        return obj_quad_rule{4, n_quad_points}(Tuple(p), Tuple(w), the_degree)
+        return TriTetQuadRule{4, n_quad_points}(Tuple(p), Tuple(w), the_degree)
     else
         error()
     end

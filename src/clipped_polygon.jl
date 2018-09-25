@@ -1,10 +1,11 @@
 mutable struct ClippedPolygon{N,T}
+    frame::CartesianFrame3D
     v::MVector{7,SVector{N,T}}
     i::Int64
-    function ClippedPolygon{N,T}() where {N,T}
+    function ClippedPolygon{N,T}(frame) where {N,T}
         v = MVector{7,SVector{N,T}}(undef)
         i = 0
-        return new{N,T}(v, i)
+        return new{N,T}(frame, v, i)
     end
 end
 

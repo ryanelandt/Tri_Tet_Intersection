@@ -4,6 +4,7 @@ module Tri_Tet_Intersections
 
 using StaticArrays
 using LinearAlgebra
+using RigidBodyDynamics.Spatial
 
 
 include("types.jl")
@@ -15,6 +16,8 @@ export
     # types.jl
     Triangle,
     Tetrahedron,
+    Triangle3D,
+    Tetrahedron3D,
 
     # utility.jl
     volume,

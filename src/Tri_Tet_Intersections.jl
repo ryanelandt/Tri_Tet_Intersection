@@ -11,6 +11,7 @@ include("types.jl")
 include("utility.jl")
 include("clipped_polygon.jl")
 include("quadrature.jl")
+include("static_clip.jl")
 
 export
     # types.jl
@@ -20,6 +21,9 @@ export
     Tetrahedron3D,
 
     # utility.jl
+    unPad,
+    onePad,
+    zeroPad,
     volume,
     asMatOnePad,
     asMat,
@@ -41,7 +45,9 @@ export
     # quadrature.jl
     TriTetQuadRule,
     getTriQuadRule,
-    getTetQuadRule
+    getTetQuadRule,
 
+    # static_clip.jl
+    clip
 
 end

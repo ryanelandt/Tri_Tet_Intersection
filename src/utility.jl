@@ -1,3 +1,7 @@
+unPad(a::SVector{4,T}) where {T} = SVector{3,T}(a[1], a[2], a[3])
+onePad(a::SVector{3,T}) where {T} = SVector{4,T}(a[1], a[2], a[3], one(T))
+zeroPad(a::SVector{3,T}) where {T} = SVector{4,T}(a[1], a[2], a[3], zero(T))
+
 ### Triangle ###
 triangleCross(t::Triangle{T}) where {T} = cross(t.v2 - t.v1, t.v3 - t.v2)
 area(t::Triangle{T}) where {T} = LinearAlgebra.norm(triangleCross(t)) * 0.5

@@ -49,7 +49,8 @@ export
     getTetQuadRule,
 
     # static_clip.jl
-    clip,
+    clip_in_tet_coordinates,
+    # clip,
 
     # plane_tet_intersection.jl
     clip_plane_tet

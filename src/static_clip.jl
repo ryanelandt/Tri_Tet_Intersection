@@ -8,7 +8,7 @@ function clip_by_tet_plane(z1::SVector{4,T}, z2::NTuple{N,SVector{4,T}}, z3::SVe
     return clip_by_tet_plane(z, i)
 end
 
-function tuple_forward(z::NTuple{N,SVector{4,T}}, i::Int64) where {N, T}
+function tuple_forward(z::NTuple{N,SVector{4,T}}, i::Int64) where {N,T}
     return Tuple(z[mod1(k + i - 1, N)] for k = 1:N)
 end
 

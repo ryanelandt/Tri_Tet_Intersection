@@ -49,6 +49,7 @@ export
     getTetQuadRule,
 
     # static_clip.jl
+    poly_eight,
     clip_in_tet_coordinates,
     # clip,
 

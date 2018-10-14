@@ -1,4 +1,13 @@
 
+# TODO: write good test for both triangle and convex quadlateral cases
+# 1. confirm that all clipped vertices lie in a plane
+# 2. for each of 1000 random points...
+#   if lies in clipped region
+#        lies inside both origional geometry and clipping tet
+#   else
+#        lies outside either origional geometry or clipping tet
+#
+
 function calcSignedArea(A_top, r̃, n̂, i_1::Int64, i_2, the_out::NTuple{N,T}) where {N,T}
     v_1 = A_top * the_out[i_1]
     v_2 = A_top * the_out[i_2]
@@ -17,7 +26,7 @@ end
 
 function test_phi(ϕ, inv_A, A3, A_top, n̂, tup_p123, the_out::NTuple{N,T}) where {N,T}
     (N == 0) && (return true)  # TODO: this case is not handled correctly
-    
+
     ϕ /= sum(ϕ)  # phi is in triangular coordinates and needs to sum to 1
     r̃ = A3 * ϕ
     p1, p2, p3 = tup_p123
@@ -97,7 +106,7 @@ using Test
             A_top = getTop(A)
             A3 = asMat(p1, p2, p3)
             # is_exist, the_out = clip(z1, z2, z3, 1)
-            is_exist, the_out = clip_in_tet_coordinates((z1, z2, z3))
+            is_exist, the_out = clip_in_tet_coordinates(z1, z2, z3)
 
             n_clip_vert = length(the_out)
             if n_clip_vert == 0

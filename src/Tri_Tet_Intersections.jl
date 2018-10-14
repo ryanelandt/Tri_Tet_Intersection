@@ -12,6 +12,7 @@ include("utility.jl")
 include("clipped_polygon.jl")
 include("quadrature.jl")
 include("static_clip.jl")
+include("plane_tet_intersection.jl")
 
 export
     # types.jl
@@ -48,6 +49,9 @@ export
     getTetQuadRule,
 
     # static_clip.jl
-    clip
+    clip,
+
+    # plane_tet_intersection.jl
+    clip_plane_tet
 
 end

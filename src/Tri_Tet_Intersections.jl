@@ -17,6 +17,8 @@ include("plane_tet_intersection.jl")
 export
     # poly_eight.jl
     poly_eight,
+    mul_then_un_pad,
+    one_pad_then_mul,
 
     # types.jl
     Triangle,

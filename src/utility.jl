@@ -1,3 +1,11 @@
+
+function weightPoly(p1::SVector{N,T}, p2::SVector{N,T}, w1::T, w2::T) where {N,T}
+  sum_weight = w1 - w2
+  c1 = w1 / sum_weight
+  c2 = w2 / sum_weight
+  return c1 * p2 - c2 * p1
+end
+
 unPad(a::SVector{4,T}) where {T} = SVector{3,T}(a[1], a[2], a[3])
 onePad(a::SVector{3,T}) where {T} = SVector{4,T}(a[1], a[2], a[3], one(T))
 zeroPad(a::SVector{3,T}) where {T} = SVector{4,T}(a[1], a[2], a[3], zero(T))

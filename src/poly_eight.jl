@@ -41,8 +41,8 @@ function one_pad_then_mul(m::SMatrix{4,4,T,16}, p::poly_eight{3,T}) where {T}
     end
 end
 
-function mul_then_un_pad(m::SMatrix{4,4,T,16}, p::poly_eight{3,T}) where {T}
-    @inline mul_then_un_pad_(m::SMatrix{4,4,T,16}, v::SVector{3,T}) where {T} = unPad(m * v)
+function mul_then_un_pad(m::SMatrix{4,4,T,16}, p::poly_eight{4,T}) where {T}
+    @inline mul_then_un_pad_(m::SMatrix{4,4,T,16}, v::SVector{4,T}) where {T} = unPad(m * v)
     t1 = mul_then_un_pad_(m, p[1])
     t2 = mul_then_un_pad_(m, p[2])
     t3 = mul_then_un_pad_(m, p[3])

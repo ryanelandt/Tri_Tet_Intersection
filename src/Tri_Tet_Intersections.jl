@@ -13,6 +13,7 @@ include("clipped_polygon.jl")
 include("quadrature.jl")
 include("static_clip.jl")
 include("plane_tet_intersection.jl")
+include("test_utility.jl")
 
 export
     # poly_eight.jl
@@ -59,6 +60,14 @@ export
     # clip,
 
     # plane_tet_intersection.jl
-    clip_plane_tet
+    clip_plane_tet,
+
+    # test_utility.jl
+    roll_non_degenerate_tet,
+    make_4_sided,
+    normal,
+    dist_from_plane,
+    project_into_plane,
+    signed_area
 
 end

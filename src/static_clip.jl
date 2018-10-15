@@ -146,7 +146,7 @@ function clip(z1::SVector{4,T}, z2::SVector{4,T}, z3::SVector{4,T}, z4::SVector{
     # all(is_non_pos) && (return false, NTuple{0,SVector{4,T}}())
     all(is_non_pos) && (return poly_eight{4,T}())
     if all(0.0 .<= s)  # non_negative
-        return clip(z1, z2, z3, z4, z5, z6, z7[i], i + 1)
+        return clip(z1, z2, z3, z4, z5, z6, z7, i + 1)
     else
         is_non_pos[1] && !is_non_pos[2] && (return cut_clip(z1, z2, z3, z4, z5, z6, z7, i))
         is_non_pos[2] && !is_non_pos[3] && (return cut_clip(z2, z3, z4, z5, z6, z7, z1, i))

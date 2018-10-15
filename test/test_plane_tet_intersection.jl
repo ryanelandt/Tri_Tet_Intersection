@@ -1,8 +1,13 @@
 
+# using StaticArrays
+# using LinearAlgebra
+# using Test
+# using Tri_Tet_Intersections
+
 # dist_from_plane(plane::SMatrix{1,4,Float64,4}, c::SVector{3,Float64}) = dot(plane[1:3], c) + plane[4]
 
-function verify_inplane(plane::SMatrix{1,4,Float64,4}, c::NTuple{N,SVector{3,Float64}}) where {N}
-    for k = 1:N
+function verify_inplane(plane::SMatrix{1,4,Float64,4}, c::poly_eight{3,Float64}) where {N}
+    for k = 1:length(c)
         d_from_plane = dist_from_plane(plane, c[k])
         (1.0e-14 < abs(d_from_plane)) && (return false)
     end
@@ -25,6 +30,8 @@ end
 #         return v1, v2, v3, v4
 #     end
 # end
+
+
 
 @testset "clip_plane_tet" begin
     n_3 = 0

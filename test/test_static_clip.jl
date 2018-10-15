@@ -16,7 +16,7 @@ end
     n_hits = zeros(MVector{8,Int64})
     for k_tet = 1:500000
         if n_hits[8] <= 2
-            r_orig = poly_eight(make_4_sided())
+            r_orig = make_4_sided()
 
             n̂ = triangleNormal(r_orig[1], r_orig[2], r_orig[3])
             n̂_check = triangleNormal(r_orig[2], r_orig[3], r_orig[4])

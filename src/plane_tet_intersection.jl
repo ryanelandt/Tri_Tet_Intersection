@@ -75,7 +75,7 @@ function clip_plane_tet(plane::SMatrix{1,4,T,4}, tet::SMatrix{4,4,T,16}) where {
     n_pos = sum(bool_pos)
 
     if (n_pos == 0) || (n_neg == 0)
-        return poly_eight{4,T}()  # NTuple{0,SVector{3,T}}()
+        return poly_eight{3,T}()  # NTuple{0,SVector{3,T}}()
     else
         v = tet_mat_to_tuple(tet)
         if n_pos == 1

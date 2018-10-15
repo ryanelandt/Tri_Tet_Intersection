@@ -1,5 +1,5 @@
 
-dist_from_plane(plane::SMatrix{1,4,Float64,4}, c::SVector{3,Float64}) = dot(plane[1:3], c) + plane[4]
+# dist_from_plane(plane::SMatrix{1,4,Float64,4}, c::SVector{3,Float64}) = dot(plane[1:3], c) + plane[4]
 
 function verify_inplane(plane::SMatrix{1,4,Float64,4}, c::NTuple{N,SVector{3,Float64}}) where {N}
     for k = 1:N

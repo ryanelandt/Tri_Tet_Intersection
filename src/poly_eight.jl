@@ -1,5 +1,4 @@
 
-
 struct poly_eight{N,T}
     n::Int64
     v::NTuple{8,SVector{N,T}}
@@ -11,8 +10,9 @@ struct poly_eight{N,T}
     end
 end
 
-Base.length(p::poly_eight) = p.n
-Base.getindex(p::poly_eight, k::Int64) = p.v[k]
+@inline Base.isempty(p::poly_eight) = (p.n == 0)
+@inline Base.length(p::poly_eight) = p.n
+@inline Base.getindex(p::poly_eight, k::Int64) = p.v[k]
 
 function centroid(p_new::poly_eight{3,T}) where {T}
   cart_a = p_new.v[1]

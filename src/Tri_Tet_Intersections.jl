@@ -40,14 +40,14 @@ export
     centroid,
     triangleNormal,
 
-    # clipped_polygon.jl
-    ClippedPolygon,
-    weightPoly,
-    add!,
-    setTriangleTetMutable,
-    modularTriTetClip,
-    clipTriangleWithOneTetPlane,
-    tet_clip_poly_to_cartesian!,
+    # # clipped_polygon.jl
+    # ClippedPolygon,
+    # weightPoly,
+    # add!,
+    # setTriangleTetMutable,
+    # modularTriTetClip,
+    # clipTriangleWithOneTetPlane,
+    # tet_clip_poly_to_cartesian!,
 
     # quadrature.jl
     TriTetQuadRule,

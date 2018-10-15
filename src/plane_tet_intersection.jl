@@ -8,28 +8,28 @@ function clip_plane_tet_1(proj::SMatrix{1,4,T,4}, v::NTuple{4,SVector{3,T}}) whe
     b = proj_weight_poly(proj, v, 4, 1)
     c = proj_weight_poly(proj, v, 3, 1)
     tup = 0.0 < proj[1] ? (a, b, c) : (c, b, a)
-    return poly_eight(3, tup)
+    return poly_eight(tup)
 end
 function clip_plane_tet_2(proj::SMatrix{1,4,T,4}, v::NTuple{4,SVector{3,T}}) where {T}
     a = proj_weight_poly(proj, v, 1, 2)
     b = proj_weight_poly(proj, v, 3, 2)
     c = proj_weight_poly(proj, v, 4, 2)
     tup = 0.0 < proj[2] ? (a, b, c) : (c, b, a)
-    return poly_eight(3, tup)
+    return poly_eight(tup)
 end
 function clip_plane_tet_3(proj::SMatrix{1,4,T,4}, v::NTuple{4,SVector{3,T}}) where {T}
     a = proj_weight_poly(proj, v, 1, 3)
     b = proj_weight_poly(proj, v, 4, 3)
     c = proj_weight_poly(proj, v, 2, 3)
     tup = 0.0 < proj[3] ? (a, b, c) : (c, b, a)
-    return poly_eight(3, tup)
+    return poly_eight(tup)
 end
 function clip_plane_tet_4(proj::SMatrix{1,4,T,4}, v::NTuple{4,SVector{3,T}}) where {T}
     a = proj_weight_poly(proj, v, 1, 4)
     b = proj_weight_poly(proj, v, 2, 4)
     c = proj_weight_poly(proj, v, 3, 4)
     tup = 0.0 < proj[4] ? (a, b, c) : (c, b, a)
-    return poly_eight(3, tup)
+    return poly_eight(tup)
 end
 
 function clip_plane_tet_12(proj::SMatrix{1,4,T,4}, v::NTuple{4,SVector{3,T}}) where {T}
@@ -38,7 +38,7 @@ function clip_plane_tet_12(proj::SMatrix{1,4,T,4}, v::NTuple{4,SVector{3,T}}) wh
     c = proj_weight_poly(proj, v, 1, 4)
     d = proj_weight_poly(proj, v, 1, 3)
     tup = 0.0 < proj[1] ? (a, b, c, d) : (d, c, b, a)
-    return poly_eight(4, tup)
+    return poly_eight(tup)
 end
 function clip_plane_tet_13(proj::SMatrix{1,4,T,4}, v::NTuple{4,SVector{3,T}}) where {T}
     a = proj_weight_poly(proj, v, 1, 2)
@@ -46,7 +46,7 @@ function clip_plane_tet_13(proj::SMatrix{1,4,T,4}, v::NTuple{4,SVector{3,T}}) wh
     c = proj_weight_poly(proj, v, 3, 4)
     d = proj_weight_poly(proj, v, 3, 2)
     tup = 0.0 < proj[1] ? (a, b, c, d) : (d, c, b, a)
-    return poly_eight(4, tup)
+    return poly_eight(tup)
 end
 function clip_plane_tet_14(proj::SMatrix{1,4,T,4}, v::NTuple{4,SVector{3,T}}) where {T}
     a = proj_weight_poly(proj, v, 1, 3)
@@ -54,7 +54,7 @@ function clip_plane_tet_14(proj::SMatrix{1,4,T,4}, v::NTuple{4,SVector{3,T}}) wh
     c = proj_weight_poly(proj, v, 4, 2)
     d = proj_weight_poly(proj, v, 4, 3)
     tup = 0.0 < proj[1] ? (a, b, c, d) : (d, c, b, a)
-    return poly_eight(4, tup)
+    return poly_eight(tup)
 end
 
 function clip_plane_tet(plane::SMatrix{1,4,T,4}, tet::SMatrix{4,4,T,16}) where {T}

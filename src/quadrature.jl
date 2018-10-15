@@ -11,7 +11,7 @@ function getTriQuadRule(n_rule::Int64)
     if n_rule == 1
         n_quad_points = 1
         p = Vector{SVector{3, Float64}}(undef, n_quad_points)
-        p[1] = SVector{3, Float64}(0.33333333333333331483, 0.33333333333333331483, 0.33333333333333337034)
+        p[1] = SVector{3, Float64}(0.33333333333333331483, 0.33333333333333331483, 0.33333333333333331483)
         w = zeros(n_quad_points)
         w[1] = 1.00000000000000000000
         the_degree = 1

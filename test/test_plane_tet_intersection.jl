@@ -1,11 +1,4 @@
 
-# using StaticArrays
-# using LinearAlgebra
-# using Test
-# using Tri_Tet_Intersections
-
-# dist_from_plane(plane::SMatrix{1,4,Float64,4}, c::SVector{3,Float64}) = dot(plane[1:3], c) + plane[4]
-
 function verify_inplane(plane::SMatrix{1,4,Float64,4}, c::poly_eight{3,Float64}) where {N}
     for k = 1:length(c)
         d_from_plane = dist_from_plane(plane, c[k])
@@ -18,20 +11,6 @@ function verify_at_least_2_zero(zeta::SVector{4,Float64})
     n_small = sum(abs.(zeta) .< 1.0e-14)
     return 2 <= n_small
 end
-
-# function roll_non_degenerate_tet()
-#     v1 = randn(SVector{3,Float64})
-#     v2 = randn(SVector{3,Float64})
-#     v3 = randn(SVector{3,Float64})
-#     v4 = randn(SVector{3,Float64})
-#     if volume(v1, v2, v3, v4) < 0.05
-#         return roll_non_degenerate_tet()
-#     else
-#         return v1, v2, v3, v4
-#     end
-# end
-
-
 
 @testset "clip_plane_tet" begin
     n_3 = 0

@@ -14,17 +14,17 @@ function verify_at_least_2_zero(zeta::SVector{4,Float64})
     return 2 <= n_small
 end
 
-function roll_non_degenerate_tet()
-    v1 = randn(SVector{3,Float64})
-    v2 = randn(SVector{3,Float64})
-    v3 = randn(SVector{3,Float64})
-    v4 = randn(SVector{3,Float64})
-    if volume(v1, v2, v3, v4) < 0.05
-        return roll_non_degenerate_tet()
-    else
-        return v1, v2, v3, v4
-    end
-end
+# function roll_non_degenerate_tet()
+#     v1 = randn(SVector{3,Float64})
+#     v2 = randn(SVector{3,Float64})
+#     v3 = randn(SVector{3,Float64})
+#     v4 = randn(SVector{3,Float64})
+#     if volume(v1, v2, v3, v4) < 0.05
+#         return roll_non_degenerate_tet()
+#     else
+#         return v1, v2, v3, v4
+#     end
+# end
 
 @testset "clip_plane_tet" begin
     n_3 = 0

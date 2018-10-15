@@ -42,24 +42,15 @@
 #     end
 # end
 
-
-struct poly_eight{N,T}
-    n::Int64
-    v::NTuple{8,SVector{N,T}}
-    function poly_eight{N,T}() where {N,T}
-        return new{N,T}(0)
-    end
-    function poly_eight(n::Int64, v::NTuple{8,SVector{N,T}}) where {N,T}
-        return new{N,T}(n, v)
+function clip_in_tet_coordinates(p::poly_eight{4,T}) where {T}
+    if length(p) == 3
+        return clip_in_tet_coordinates(p.v[1], p.v[2], p.v[3])
+    elseif length(p) == 4
+        return clip_in_tet_coordinates(p.v[1], p.v[2], p.v[3], p.v[4])
+    else
+        error("something is wrong")
     end
 end
-
-Base.length(p::poly_eight) = p.n
-Base.getindex(p::poly_eight, k::Int64) = p.v[k]
-
-
-
-
 
 function clip_in_tet_coordinates(z1::SVector{4,T}, z2::SVector{4,T}, z3::SVector{4,T}) where {T}
     return clip(z1, z2, z3, 1)

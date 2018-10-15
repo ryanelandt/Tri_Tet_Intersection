@@ -6,7 +6,7 @@ using StaticArrays
 using LinearAlgebra
 using RigidBodyDynamics.Spatial
 
-
+include("poly_eight.jl")
 include("types.jl")
 include("utility.jl")
 include("clipped_polygon.jl")
@@ -15,6 +15,9 @@ include("static_clip.jl")
 include("plane_tet_intersection.jl")
 
 export
+    # poly_eight.jl
+    poly_eight,
+
     # types.jl
     Triangle,
     Tetrahedron,

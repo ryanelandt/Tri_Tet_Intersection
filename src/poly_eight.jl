@@ -14,6 +14,9 @@ struct poly_eight{N,T}
     function poly_eight(v::NTuple{4,SVector{N,T}}) where {N,T}
         return new{N,T}(4, (v[1], v[2], v[3], v[4], v[1], v[1], v[1], v[1]))
     end
+    function poly_eight(v::SVector{N2,SVector{N,T}}) where {N2,N,T}
+        return poly_eight(v.data)
+    end
 end
 
 @inline Base.isempty(p::poly_eight) = (p.n == 0)
@@ -41,8 +44,8 @@ function centroid(p_new::poly_eight{3,T}) where {T}
     end
 end
 
-function one_pad_then_mul(m::SMatrix{4,4,T,16}, p::poly_eight{3,T}) where {T}
-    @inline one_pad_then_mul_(m::SMatrix{4,4,T,16}, v::SVector{3,T}) where {T} = m * onePad(v)
+function one_pad_then_mul(m::SMatrix{4,4,T1,16}, p::poly_eight{3,T2}) where {T1,T2}
+    @inline one_pad_then_mul_(m::SMatrix{4,4,T1,16}, v::SVector{3,T2}) where {T1,T2} = m * onePad(v)
     t1 = one_pad_then_mul_(m, p[1])
     t2 = one_pad_then_mul_(m, p[2])
     t3 = one_pad_then_mul_(m, p[3])
@@ -59,8 +62,8 @@ function one_pad_then_mul(m::SMatrix{4,4,T,16}, p::poly_eight{3,T}) where {T}
     end
 end
 
-function mul_then_un_pad(m::SMatrix{4,4,T,16}, p::poly_eight{4,T}) where {T}
-    @inline mul_then_un_pad_(m::SMatrix{4,4,T,16}, v::SVector{4,T}) where {T} = unPad(m * v)
+function mul_then_un_pad(m::SMatrix{4,4,T1,16}, p::poly_eight{4,T2}) where {T1,T2}
+    @inline mul_then_un_pad_(m::SMatrix{4,4,T1,16}, v::SVector{4,T2}) where {T1,T2} = unPad(m * v)
     t1 = mul_then_un_pad_(m, p[1])
     t2 = mul_then_un_pad_(m, p[2])
     t3 = mul_then_un_pad_(m, p[3])

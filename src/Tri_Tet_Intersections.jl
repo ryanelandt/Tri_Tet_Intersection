@@ -65,7 +65,7 @@ export
     # test_utility.jl
     roll_non_degenerate_tet,
     make_4_sided,
-    normal,
+    # normal,
     dist_from_plane,
     project_into_plane,
     signed_area

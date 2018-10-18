@@ -26,9 +26,9 @@ function make_4_sided()
     end
 end
 
-normal(plane::SMatrix{1,4,T,4}) where {T} = SVector{3,T}(plane[1], plane[2], plane[3])
-dist_from_plane(plane::SMatrix{1,4,Float64,4}, v::SVector{3,Float64}) = dot(v, normal(plane)) + plane[4]
-project_into_plane(plane::SMatrix{1,4,Float64,4}, v::SVector{3,Float64}) = v - dist_from_plane(plane, v) * normal(plane)
+# normal(plane::SMatrix{1,4,T,4}) where {T} = SVector{3,T}(plane[1], plane[2], plane[3])
+dist_from_plane(plane::SMatrix{1,4,Float64,4}, v::SVector{3,Float64}) = dot(v, unPad(plane)) + plane[4]
+project_into_plane(plane::SMatrix{1,4,Float64,4}, v::SVector{3,Float64}) = v - dist_from_plane(plane, v) * unPad(plane)
 
 function signed_area(n̂::SVector{3,Float64}, v1::SVector{3,Float64}, v2::SVector{3,Float64}, v3::SVector{3,Float64})
     vector_area = triangleCross(v1, v2, v3)

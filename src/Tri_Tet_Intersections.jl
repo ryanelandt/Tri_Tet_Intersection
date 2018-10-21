@@ -20,6 +20,7 @@ export
     poly_eight,
     mul_then_un_pad,
     one_pad_then_mul,
+    zero_small_coordinates,
 
     # types.jl
     Triangle,

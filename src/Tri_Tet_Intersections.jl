@@ -9,7 +9,6 @@ using RigidBodyDynamics.Spatial
 include("poly_eight.jl")
 include("types.jl")
 include("utility.jl")
-include("clipped_polygon.jl")
 include("quadrature.jl")
 include("static_clip.jl")
 include("plane_tet_intersection.jl")
@@ -40,15 +39,6 @@ export
     area,
     centroid,
     triangleNormal,
-
-    # # clipped_polygon.jl
-    # ClippedPolygon,
-    # weightPoly,
-    # add!,
-    # setTriangleTetMutable,
-    # modularTriTetClip,
-    # clipTriangleWithOneTetPlane,
-    # tet_clip_poly_to_cartesian!,
 
     # quadrature.jl
     TriTetQuadRule,

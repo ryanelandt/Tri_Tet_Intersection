@@ -3,6 +3,7 @@ __precompile__(true)
 module Tri_Tet_Intersections
 
 using StaticArrays
+using ForwardDiff: value
 using LinearAlgebra
 using RigidBodyDynamics.Spatial
 

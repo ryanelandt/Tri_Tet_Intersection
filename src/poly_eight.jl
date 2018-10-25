@@ -81,23 +81,45 @@ function mul_then_un_pad(m::SMatrix{4,4,T1,16}, p::poly_eight{4,T2}) where {T1,T
 end
 
 function zero_small_coordinates(p::poly_eight{4,T}) where {T}
-    @noinline function zero_if_small(x::T) where {T}
-        tol = 1.0e-14
-        return (-tol) < x < tol ? zero(T) : x
+    function zero_if_small(x::SVector{4,T}) where {T}
+        abs_x = 1.0e-14 .< abs.(value.(x))
+        return x .* abs_x
     end
 
-    v1 = zero_if_small.(p[1])
-    v2 = zero_if_small.(p[2])
-    v3 = zero_if_small.(p[3])
-    v4 = zero_if_small.(p[4])
+    v1 = zero_if_small(p[1])
+    v2 = zero_if_small(p[2])
+    v3 = zero_if_small(p[3])
+    v4 = zero_if_small(p[4])
     length_p = length(p)
     if length_p <= 4
         return poly_eight(length_p, (v1, v2, v3, v4, v1, v1, v1, v1))
     else
-        v5 = zero_if_small.(p[5])
-        v6 = zero_if_small.(p[6])
-        v7 = zero_if_small.(p[7])
-        v8 = zero_if_small.(p[8])
+        v5 = zero_if_small(p[5])
+        v6 = zero_if_small(p[6])
+        v7 = zero_if_small(p[7])
+        v8 = zero_if_small(p[8])
         return return poly_eight(length_p, (v1, v2, v3, v4, v5, v6, v7, v8))
     end
 end
+
+# function zero_small_coordinates(p::poly_eight{4,T}) where {T}
+#     @noinline function zero_if_small(x::T) where {T}
+#         tol = 1.0e-14
+#         return (-tol) < x < tol ? zero(T) : x
+#     end
+#
+#     v1 = zero_if_small.(p[1])
+#     v2 = zero_if_small.(p[2])
+#     v3 = zero_if_small.(p[3])
+#     v4 = zero_if_small.(p[4])
+#     length_p = length(p)
+#     if length_p <= 4
+#         return poly_eight(length_p, (v1, v2, v3, v4, v1, v1, v1, v1))
+#     else
+#         v5 = zero_if_small.(p[5])
+#         v6 = zero_if_small.(p[6])
+#         v7 = zero_if_small.(p[7])
+#         v8 = zero_if_small.(p[8])
+#         return return poly_eight(length_p, (v1, v2, v3, v4, v5, v6, v7, v8))
+#     end
+# end

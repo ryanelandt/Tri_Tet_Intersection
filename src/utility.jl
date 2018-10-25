@@ -36,34 +36,13 @@ function asMat(v1::SVector{3,T}, v2::SVector{3,T}, v3::SVector{3,T}) where {T}
     return A
 end
 
-# function asMatOnePad(t::Triangle{T}) where {T}
-#     A = @SMatrix [
-#     t.v1[1] t.v2[1] t.v3[1];
-#     t.v1[2] t.v2[2] t.v3[2];
-#     t.v1[3] t.v2[3] t.v3[3];
-#     one(T)  one(T)  one(T)
-#     ]
-#     return A
-# end
-#
-# function asMat(t::Triangle{T}) where {T}
-#     A = @SMatrix [
-#     t.v1[1] t.v2[1] t.v3[1];
-#     t.v1[2] t.v2[2] t.v3[2];
-#     t.v1[3] t.v2[3] t.v3[3]
-#     ]
-#     return A
-# end
-
 for funName in (:triangleCross, :area, :centroid, :triangleNormal, :asMatOnePad, :asMat)
     @eval begin
         function $funName(sv::SVector{3,SVector{3,T}}) where {T}
-            # t = Triangle(sv[1], sv[2], sv[3])
             return $funName(sv[1], sv[2], sv[3])
         end
         function $funName(sv::NTuple{3,SVector{3,T}}) where {T}
-            # t = Triangle(sv_1, sv_2, sv_3)
-            return $funName(t)
+            return $funName(sv[1], sv[2], sv[3])
         end
     end
 end

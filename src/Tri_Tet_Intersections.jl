@@ -22,9 +22,9 @@ export
     zero_small_coordinates,
 
     # types.jl
-    Triangle,
+    # Triangle,
     Tetrahedron,
-    Triangle3D,
+    # Triangle3D,
     Tetrahedron3D,
 
     # utility.jl

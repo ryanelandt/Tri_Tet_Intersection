@@ -26,7 +26,6 @@ function make_4_sided()
     end
 end
 
-# normal(plane::SMatrix{1,4,T,4}) where {T} = SVector{3,T}(plane[1], plane[2], plane[3])
 dist_from_plane(plane::SMatrix{1,4,Float64,4}, v::SVector{3,Float64}) = dot(v, unPad(plane)) + plane[4]
 project_into_plane(plane::SMatrix{1,4,Float64,4}, v::SVector{3,Float64}) = v - dist_from_plane(plane, v) * unPad(plane)
 

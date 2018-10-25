@@ -12,38 +12,57 @@ onePad(a::SVector{3,T}) where {T} = SVector{4,T}(a[1], a[2], a[3], one(T))
 zeroPad(a::SVector{3,T}) where {T} = SVector{4,T}(a[1], a[2], a[3], zero(T))
 
 ### Triangle ###
-triangleCross(t::Triangle{T}) where {T} = cross(t.v2 - t.v1, t.v3 - t.v2)
-area(t::Triangle{T}) where {T} = LinearAlgebra.norm(triangleCross(t)) * 0.5
-centroid(t::Triangle{T}) where {T} = (t.v1 + t.v2 + t.v3) * Float64(1/3)  # 4 times faster than dividing by 3
-triangleNormal(t::Triangle) = normalize(triangleCross(t))
+triangleCross(v1::SVector{3,T}, v2::SVector{3,T}, v3::SVector{3,T}) where {T} = cross(v2 - v1, v3 - v2)
+area(v1::SVector{3,T}, v2::SVector{3,T}, v3::SVector{3,T}) where {T} = LinearAlgebra.norm(triangleCross(v1, v2, v3)) * 0.5
+centroid(v1::SVector{3,T}, v2::SVector{3,T}, v3::SVector{3,T}) where {T} = (v1 + v2 + v3) * Float64(1/3)  # 4 times faster than dividing by 3
+triangleNormal(v1::SVector{3,T}, v2::SVector{3,T}, v3::SVector{3,T}) where {T} = normalize(triangleCross(v1, v2, v3))
 
-function asMatOnePad(t::Triangle{T}) where {T}
+function asMatOnePad(v1::SVector{3,T}, v2::SVector{3,T}, v3::SVector{3,T}) where {T}
     A = @SMatrix [
-    t.v1[1] t.v2[1] t.v3[1];
-    t.v1[2] t.v2[2] t.v3[2];
-    t.v1[3] t.v2[3] t.v3[3];
+    v1[1] v2[1] v3[1];
+    v1[2] v2[2] v3[2];
+    v1[3] v2[3] v3[3];
     one(T)  one(T)  one(T)
     ]
     return A
 end
 
-function asMat(t::Triangle{T}) where {T}
+function asMat(v1::SVector{3,T}, v2::SVector{3,T}, v3::SVector{3,T}) where {T}
     A = @SMatrix [
-    t.v1[1] t.v2[1] t.v3[1];
-    t.v1[2] t.v2[2] t.v3[2];
-    t.v1[3] t.v2[3] t.v3[3]
+    v1[1] v2[1] v3[1];
+    v1[2] v2[2] v3[2];
+    v1[3] v2[3] v3[3]
     ]
     return A
 end
 
+# function asMatOnePad(t::Triangle{T}) where {T}
+#     A = @SMatrix [
+#     t.v1[1] t.v2[1] t.v3[1];
+#     t.v1[2] t.v2[2] t.v3[2];
+#     t.v1[3] t.v2[3] t.v3[3];
+#     one(T)  one(T)  one(T)
+#     ]
+#     return A
+# end
+#
+# function asMat(t::Triangle{T}) where {T}
+#     A = @SMatrix [
+#     t.v1[1] t.v2[1] t.v3[1];
+#     t.v1[2] t.v2[2] t.v3[2];
+#     t.v1[3] t.v2[3] t.v3[3]
+#     ]
+#     return A
+# end
+
 for funName in (:triangleCross, :area, :centroid, :triangleNormal, :asMatOnePad, :asMat)
     @eval begin
         function $funName(sv::SVector{3,SVector{3,T}}) where {T}
-            t = Triangle(sv[1], sv[2], sv[3])
-            return $funName(t)
+            # t = Triangle(sv[1], sv[2], sv[3])
+            return $funName(sv[1], sv[2], sv[3])
         end
-        function $funName(sv_1::SVector{3,T}, sv_2::SVector{3,T}, sv_3::SVector{3,T}) where {T}
-            t = Triangle(sv_1, sv_2, sv_3)
+        function $funName(sv::NTuple{3,SVector{3,T}}) where {T}
+            # t = Triangle(sv_1, sv_2, sv_3)
             return $funName(t)
         end
     end

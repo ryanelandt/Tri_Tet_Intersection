@@ -29,9 +29,6 @@ export
     Tetrahedron3D,
 
     # utility.jl
-    unPad,
-    onePad,
-    zeroPad,
     volume,
     asMatOnePad,
     asMat,

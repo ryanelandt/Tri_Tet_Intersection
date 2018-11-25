@@ -45,37 +45,37 @@ function centroid(p_new::poly_eight{3,T}) where {T}
 end
 
 function one_pad_then_mul(m::SMatrix{4,4,T1,16}, p::poly_eight{3,T2}) where {T1,T2}
-    @inline one_pad_then_mul_(m::SMatrix{4,4,T1,16}, v::SVector{3,T2}) where {T1,T2} = m * onePad(v)
-    t1 = one_pad_then_mul_(m, p[1])
-    t2 = one_pad_then_mul_(m, p[2])
-    t3 = one_pad_then_mul_(m, p[3])
-    t4 = one_pad_then_mul_(m, p[4])
+    # @inline one_pad_then_mul(m::SMatrix{4,4,T1,16}, v::SVector{3,T2}) where {T1,T2} = m * onePad(v)
+    t1 = one_pad_then_mul(m, p[1])
+    t2 = one_pad_then_mul(m, p[2])
+    t3 = one_pad_then_mul(m, p[3])
+    t4 = one_pad_then_mul(m, p[4])
     length_p = length(p)
     if length_p <= 4
         return poly_eight(length_p, (t1, t2, t3, t4, t1, t1, t1, t1))
     else
-        t5 = one_pad_then_mul_(m, p[5])
-        t6 = one_pad_then_mul_(m, p[6])
-        t7 = one_pad_then_mul_(m, p[7])
-        t8 = one_pad_then_mul_(m, p[8])
+        t5 = one_pad_then_mul(m, p[5])
+        t6 = one_pad_then_mul(m, p[6])
+        t7 = one_pad_then_mul(m, p[7])
+        t8 = one_pad_then_mul(m, p[8])
         return poly_eight(length_p, (t1, t2, t3, t4, t5, t6, t7, t8))
     end
 end
 
 function mul_then_un_pad(m::SMatrix{4,4,T1,16}, p::poly_eight{4,T2}) where {T1,T2}
-    @inline mul_then_un_pad_(m::SMatrix{4,4,T1,16}, v::SVector{4,T2}) where {T1,T2} = unPad(m * v)
-    t1 = mul_then_un_pad_(m, p[1])
-    t2 = mul_then_un_pad_(m, p[2])
-    t3 = mul_then_un_pad_(m, p[3])
-    t4 = mul_then_un_pad_(m, p[4])
+    # @inline mul_then_un_pad(m::SMatrix{4,4,T1,16}, v::SVector{4,T2}) where {T1,T2} = unPad(m * v)
+    t1 = mul_then_un_pad(m, p[1])
+    t2 = mul_then_un_pad(m, p[2])
+    t3 = mul_then_un_pad(m, p[3])
+    t4 = mul_then_un_pad(m, p[4])
     length_p = length(p)
     if length_p <= 4
         return poly_eight(length_p, (t1, t2, t3, t4, t1, t1, t1, t1))
     else
-        t5 = mul_then_un_pad_(m, p[5])
-        t6 = mul_then_un_pad_(m, p[6])
-        t7 = mul_then_un_pad_(m, p[7])
-        t8 = mul_then_un_pad_(m, p[8])
+        t5 = mul_then_un_pad(m, p[5])
+        t6 = mul_then_un_pad(m, p[6])
+        t7 = mul_then_un_pad(m, p[7])
+        t8 = mul_then_un_pad(m, p[8])
         return poly_eight(length_p, (t1, t2, t3, t4, t5, t6, t7, t8))
     end
 end

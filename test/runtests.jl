@@ -2,6 +2,7 @@ using Test
 using StaticArrays
 using Tri_Tet_Intersections
 using LinearAlgebra
+using NumericalTricks
 
 
 include("test_exports.jl")

@@ -44,7 +44,7 @@ function centroid(p_new::poly_eight{3,T}) where {T}
     end
 end
 
-function one_pad_then_mul(m::SMatrix{4,4,T1,16}, p::poly_eight{3,T2}) where {T1,T2}
+function NumericalTricks.one_pad_then_mul(m::SMatrix{4,4,T1,16}, p::poly_eight{3,T2}) where {T1,T2}
     # @inline one_pad_then_mul(m::SMatrix{4,4,T1,16}, v::SVector{3,T2}) where {T1,T2} = m * onePad(v)
     t1 = one_pad_then_mul(m, p[1])
     t2 = one_pad_then_mul(m, p[2])
@@ -62,7 +62,7 @@ function one_pad_then_mul(m::SMatrix{4,4,T1,16}, p::poly_eight{3,T2}) where {T1,
     end
 end
 
-function mul_then_un_pad(m::SMatrix{4,4,T1,16}, p::poly_eight{4,T2}) where {T1,T2}
+function NumericalTricks.mul_then_un_pad(m::SMatrix{4,4,T1,16}, p::poly_eight{4,T2}) where {T1,T2}
     # @inline mul_then_un_pad(m::SMatrix{4,4,T1,16}, v::SVector{4,T2}) where {T1,T2} = unPad(m * v)
     t1 = mul_then_un_pad(m, p[1])
     t2 = mul_then_un_pad(m, p[2])

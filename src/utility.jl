@@ -86,15 +86,6 @@ function asMat(t::Tetrahedron{T}) where {T}
     return A
 end
 
-function getTop(a::SMatrix{4,4,T,16}) where {T}
-    A = @SMatrix [
-    a[1]  a[5]  a[9]  a[13];
-    a[2]  a[6]  a[10] a[14];
-    a[3]  a[7]  a[11] a[15]
-    ]
-    return A
-end
-
 for funName in (:volume, :centroid, :asMatOnePad, :asMat)
     @eval begin
         function $funName(sv::SVector{4,SVector{3,T}}) where {T}

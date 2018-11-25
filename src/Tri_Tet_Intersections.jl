@@ -5,7 +5,9 @@ module Tri_Tet_Intersections
 using StaticArrays
 using ForwardDiff: value
 using LinearAlgebra
+using NumericalTricks
 using RigidBodyDynamics.Spatial
+
 
 include("poly_eight.jl")
 include("types.jl")
@@ -33,7 +35,6 @@ export
     volume,
     asMatOnePad,
     asMat,
-    getTop,
     triangleCross,
     area,
     centroid,

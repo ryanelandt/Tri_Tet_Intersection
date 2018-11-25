@@ -16,7 +16,9 @@ matrix:
     - julia: nightly
 #     - os: osx
 # uncomment the following lines to override the default test script
-#script:
+before_script:
+  - julia -e 'import Pkg; repo = Pkg.Types.GitRepo("https://github.com/ryanelandt/NumericalTricks.jl", "master"); Pkg.add(Pkg.Types.PackageSpec(repo))'
+
 #  - if [[ -a .git/shallow ]]; then git fetch --unshallow; fi
 #  - julia -e 'Pkg.clone(pwd()); Pkg.build("Rotations"); Pkg.test("Rotations"; coverage=true)'
 after_success:

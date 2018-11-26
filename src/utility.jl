@@ -1,11 +1,4 @@
 
-function weightPoly(p1::SVector{N,T}, p2::SVector{N,T}, w1::T, w2::T) where {N,T}
-  sum_weight = w1 - w2
-  c1 = w1 / sum_weight
-  c2 = w2 / sum_weight
-  return c1 * p2 - c2 * p1
-end
-
 ### Triangle ###
 triangleCross(v1::SVector{3,T}, v2::SVector{3,T}, v3::SVector{3,T}) where {T} = cross(v2 - v1, v3 - v2)
 area(v1::SVector{3,T}, v2::SVector{3,T}, v3::SVector{3,T}) where {T} = LinearAlgebra.norm(triangleCross(v1, v2, v3)) * 0.5

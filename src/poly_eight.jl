@@ -23,7 +23,7 @@ end
 @inline Base.length(p::poly_eight) = p.n
 @inline Base.getindex(p::poly_eight, k::Int64) = p.v[k]
 
-function centroid(p_new::poly_eight{3,T}) where {T}
+function NumericalTricks.centroid(p_new::poly_eight{3,T}) where {T}
     cart_a = p_new.v[1]
     cart_c = p_new.v[2]  # because c becomes b
     cum_sum  = zero(T)

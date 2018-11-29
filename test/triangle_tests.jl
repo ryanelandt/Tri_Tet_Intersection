@@ -9,6 +9,6 @@ v3 = SVector{3,Float64}(0.0, 1.0, 0.0)
     for tri_rep = (tri_Sep, tri_SV, tri_Tup)
         @test area(tri_rep...) ≈ 0.5
         @test centroid(tri_rep...) ≈ SVector{3,Float64}(1/3,1/3,0)
-        @test triangleCross(tri_rep...) ≈ SVector{3,Float64}(0,0,1)
+        # @test triangleCross(tri_rep...) ≈ SVector{3,Float64}(0,0,1)  # Moved to NumericalTricks
     end
 end

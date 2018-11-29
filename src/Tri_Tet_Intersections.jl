@@ -20,8 +20,6 @@ include("test_utility.jl")
 export
     # poly_eight.jl
     poly_eight,
-    # mul_then_un_pad,
-    # one_pad_then_mul,
     zero_small_coordinates,
 
     # types.jl
@@ -32,10 +30,8 @@ export
     volume,
     asMatOnePad,
     asMat,
-    triangleCross,
     area,
     centroid,
-    triangleNormal,
 
     # quadrature.jl
     TriTetQuadRule,
@@ -45,7 +41,6 @@ export
     # static_clip.jl
     poly_eight,
     clip_in_tet_coordinates,
-    # clip,
 
     # plane_tet_intersection.jl
     clip_plane_tet,
@@ -53,7 +48,6 @@ export
     # test_utility.jl
     roll_non_degenerate_tet,
     make_4_sided,
-    # normal,
     dist_from_plane,
     project_into_plane,
     signed_area

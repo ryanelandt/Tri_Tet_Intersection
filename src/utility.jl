@@ -1,9 +1,7 @@
 
 ### Triangle ###
-triangleCross(v1::SVector{3,T}, v2::SVector{3,T}, v3::SVector{3,T}) where {T} = cross(v2 - v1, v3 - v2)
 area(v1::SVector{3,T}, v2::SVector{3,T}, v3::SVector{3,T}) where {T} = LinearAlgebra.norm(triangleCross(v1, v2, v3)) * 0.5
 centroid(v1::SVector{3,T}, v2::SVector{3,T}, v3::SVector{3,T}) where {T} = (v1 + v2 + v3) * Float64(1/3)  # 4 times faster than dividing by 3
-triangleNormal(v1::SVector{3,T}, v2::SVector{3,T}, v3::SVector{3,T}) where {T} = normalize(triangleCross(v1, v2, v3))
 
 function asMatOnePad(v1::SVector{3,T}, v2::SVector{3,T}, v3::SVector{3,T}) where {T}
     A = @SMatrix [
@@ -24,7 +22,7 @@ function asMat(v1::SVector{3,T}, v2::SVector{3,T}, v3::SVector{3,T}) where {T}
     return A
 end
 
-for funName in (:triangleCross, :area, :centroid, :triangleNormal, :asMatOnePad, :asMat)
+for funName in (:area, :centroid, :asMatOnePad, :asMat)
     @eval begin
         function $funName(sv::SVector{3,SVector{3,T}}) where {T}
             return $funName(sv[1], sv[2], sv[3])

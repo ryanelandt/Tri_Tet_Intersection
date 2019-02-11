@@ -17,13 +17,12 @@ Tetrahedral coordinates give points as a weighted average of the position of a t
 Specifically, suppose that a tetrahedron has vertices $a$, $b$, $c$ and $d$.
 
 ```math
-\begin{bmatrix}
-a & b \\
-c & d
-\end{bmatrix}
+X =
+\\left[\\begin{array}{cccc}
+a_1 & b_1 & c_1 & d_1 \\
+a_1 & b_1 & c_1 & d_1
+\\end{array}\\right]
 ```
-
-
 
 
 <!---

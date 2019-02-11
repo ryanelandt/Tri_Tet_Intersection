@@ -14,29 +14,27 @@ Tetrahedral coordinates...
 Points have three components when represented in Cartesian coordinates.
 For clipping it is expedient to represent points in tetrahedral coordinates.
 Tetrahedral coordinates give points as a weighted average of the position of a tetrahedron vertices.
-Specifically, suppose that a tetrahedron has vertices $a$, $b$, $c$ and $d$.
+Via example:
+<!-- Specifically, suppose that a tetrahedron has vertices a, b, c and d. -->
 
-{
-  "cell_type": "markdown",
-  "metadata": {},
-  "source": [
-   "## The Cauchy-Schwarz Inequality\n",
-   "\n",
-   "### Source\n",
-   "\n",
-   "```latex\n",
-   "\\begin{equation*}\n",
-   "\\left( \\sum_{k=1}^n a_k b_k \\right)^2 \\leq \\left( \\sum_{k=1}^n a_k^2 \\right) \\left( \\sum_{k=1}^n b_k^2 \\right)\n",
-   "\\end{equation*}\n",
-   "```\n",
-   "\n",
-   "### Display\n",
-   "\n",
-   "\\begin{equation*}\n",
-   "\\left( \\sum_{k=1}^n a_k b_k \\right)^2 \\leq \\left( \\sum_{k=1}^n a_k^2 \\right) \\left( \\sum_{k=1}^n b_k^2 \\right)\n",
-   "\\end{equation*}"
-  ]
- },
+```julia
+using Tri_Tet_Intersections
+using NumericalTricks
+using StaticArrays
+
+# The Cartesian vertices of a tetrahedron
+p1 = SVector(0, 0, 0)  # vertex 1
+p2 = SVector(1, 0, 0)  # vertex 2
+p3 = SVector(0, 1, 0)  # vertex 3
+p4 = SVector(0, 0, 1)  # vertex 4
+
+r = SVector(0.1, 0.2, 0.3)  # point inside tetrahedron
+
+X = asMatOnePad(p1, p2, p3, p4)
+
+r_tet = one_pad_then_mul(X, r)
+
+```
 
 <!-- ```math
 X =

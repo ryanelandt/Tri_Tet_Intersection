@@ -16,13 +16,35 @@ For clipping it is expedient to represent points in tetrahedral coordinates.
 Tetrahedral coordinates give points as a weighted average of the position of a tetrahedron vertices.
 Specifically, suppose that a tetrahedron has vertices $a$, $b$, $c$ and $d$.
 
-```math
+{
+  "cell_type": "markdown",
+  "metadata": {},
+  "source": [
+   "## The Cauchy-Schwarz Inequality\n",
+   "\n",
+   "### Source\n",
+   "\n",
+   "```latex\n",
+   "\\begin{equation*}\n",
+   "\\left( \\sum_{k=1}^n a_k b_k \\right)^2 \\leq \\left( \\sum_{k=1}^n a_k^2 \\right) \\left( \\sum_{k=1}^n b_k^2 \\right)\n",
+   "\\end{equation*}\n",
+   "```\n",
+   "\n",
+   "### Display\n",
+   "\n",
+   "\\begin{equation*}\n",
+   "\\left( \\sum_{k=1}^n a_k b_k \\right)^2 \\leq \\left( \\sum_{k=1}^n a_k^2 \\right) \\left( \\sum_{k=1}^n b_k^2 \\right)\n",
+   "\\end{equation*}"
+  ]
+ },
+
+<!-- ```math
 X =
 \\left[\\begin{array}{cccc}
 a_1 & b_1 & c_1 & d_1 \\
 a_1 & b_1 & c_1 & d_1
 \\end{array}\\right]
-```
+``` -->
 
 
 <!---

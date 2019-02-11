@@ -13,7 +13,7 @@ matrix:
 before_script:
 #   - julia -e 'import Pkg; repo = Pkg.Types.GitRepo("https://github.com/ryanelandt/NumericalTricks.jl", "master"); Pkg.add(Pkg.Types.PackageSpec(repo))'
 #   - julia -e 'using Pkg; repo = Pkg.Types.GitRepo("https://github.com/ryanelandt/NumericalTricks.jl", "master"); Pkg.add(Pkg.Types.PackageSpec(repo))'
-- julia -e 'Pkg.develop(PackageSpec(url="https://github.com/ryanelandt/NumericalTricks.jl.git"))'
+- julia -e 'using Pkg; Pkg.develop(PackageSpec(url="https://github.com/ryanelandt/NumericalTricks.jl.git"))'
 
 #  - if [[ -a .git/shallow ]]; then git fetch --unshallow; fi
 #  - julia -e 'Pkg.clone(pwd()); Pkg.build("Rotations"); Pkg.test("Rotations"; coverage=true)'

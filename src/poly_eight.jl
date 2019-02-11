@@ -1,4 +1,8 @@
 
+"""
+Stores a convex planar polygon in with at most 8 sides. The polygon should be in 3 dimensions (Cartesian coordinates)
+or 4 dimensions (tetrahedral coondinates).
+"""
 struct poly_eight{N,T}
     n::Int64
     v::NTuple{8,SVector{N,T}}
@@ -23,6 +27,10 @@ end
 @inline Base.length(p::poly_eight) = p.n
 @inline Base.getindex(p::poly_eight, k::Int64) = p.v[k]
 
+"""
+Finds the centroid of a 3 dimensional poly_eight by dividing the area into triangles. This funciton should be robust to
+degenerate polygons.
+"""
 function NumericalTricks.centroid(p_new::poly_eight{3,T}) where {T}
     cart_a = p_new.v[1]
     cart_c = p_new.v[2]  # because c becomes b
@@ -44,8 +52,11 @@ function NumericalTricks.centroid(p_new::poly_eight{3,T}) where {T}
     end
 end
 
+"""
+One pads each element of a 3 dimensional polygon and then multiplies it by a 4x4 matrix m. This funciton is used to
+convert each element of a Cartesian polygon into tetrahedral coordinates.
+"""
 function NumericalTricks.one_pad_then_mul(m::SMatrix{4,4,T1,16}, p::poly_eight{3,T2}) where {T1,T2}
-    # @inline one_pad_then_mul(m::SMatrix{4,4,T1,16}, v::SVector{3,T2}) where {T1,T2} = m * onePad(v)
     t1 = one_pad_then_mul(m, p[1])
     t2 = one_pad_then_mul(m, p[2])
     t3 = one_pad_then_mul(m, p[3])
@@ -62,8 +73,11 @@ function NumericalTricks.one_pad_then_mul(m::SMatrix{4,4,T1,16}, p::poly_eight{3
     end
 end
 
+"""
+Multiplies a 4 dimensional polygon by a 4x4 matrix and then unpads the 4 dimensional polygon. This function is used to
+convert a polygon in tetrahedral coordinates to a polygon in Cartesian coordinates.
+"""
 function NumericalTricks.mul_then_un_pad(m::SMatrix{4,4,T1,16}, p::poly_eight{4,T2}) where {T1,T2}
-    # @inline mul_then_un_pad(m::SMatrix{4,4,T1,16}, v::SVector{4,T2}) where {T1,T2} = unPad(m * v)
     t1 = mul_then_un_pad(m, p[1])
     t2 = mul_then_un_pad(m, p[2])
     t3 = mul_then_un_pad(m, p[3])
@@ -80,6 +94,10 @@ function NumericalTricks.mul_then_un_pad(m::SMatrix{4,4,T1,16}, p::poly_eight{4,
     end
 end
 
+"""
+Sets small coondinates of a polygon in tetrahedral coordinates to zero. This function addresses a specific probability
+one degeneracy that results when clipping an edge in the same place twice.
+"""
 function zero_small_coordinates(p::poly_eight{4,T}) where {T}
     function zero_if_small(x::SVector{4,T}) where {T}
         abs_x = 1.0e-14 .< abs.(value.(x))
@@ -101,25 +119,3 @@ function zero_small_coordinates(p::poly_eight{4,T}) where {T}
         return return poly_eight(length_p, (v1, v2, v3, v4, v5, v6, v7, v8))
     end
 end
-
-# function zero_small_coordinates(p::poly_eight{4,T}) where {T}
-#     @noinline function zero_if_small(x::T) where {T}
-#         tol = 1.0e-14
-#         return (-tol) < x < tol ? zero(T) : x
-#     end
-#
-#     v1 = zero_if_small.(p[1])
-#     v2 = zero_if_small.(p[2])
-#     v3 = zero_if_small.(p[3])
-#     v4 = zero_if_small.(p[4])
-#     length_p = length(p)
-#     if length_p <= 4
-#         return poly_eight(length_p, (v1, v2, v3, v4, v1, v1, v1, v1))
-#     else
-#         v5 = zero_if_small.(p[5])
-#         v6 = zero_if_small.(p[6])
-#         v7 = zero_if_small.(p[7])
-#         v8 = zero_if_small.(p[8])
-#         return return poly_eight(length_p, (v1, v2, v3, v4, v5, v6, v7, v8))
-#     end
-# end

@@ -5,19 +5,15 @@ os:
 julia:
   - 1.0
   - nightly
-# addons:
-#   apt:
-#     packages:
-#     - hdf5-tools # work around HDF5 install issue on Trusty, see https://discourse.julialang.org/t/hdf5-fails-on-travis-ci-with-trusty-works-with-precise/4961
 notifications:
   email: false
 matrix:
   allow_failures:
     - julia: nightly
-#     - os: osx
-# uncomment the following lines to override the default test script
 before_script:
-  - julia -e 'import Pkg; repo = Pkg.Types.GitRepo("https://github.com/ryanelandt/NumericalTricks.jl", "master"); Pkg.add(Pkg.Types.PackageSpec(repo))'
+#   - julia -e 'import Pkg; repo = Pkg.Types.GitRepo("https://github.com/ryanelandt/NumericalTricks.jl", "master"); Pkg.add(Pkg.Types.PackageSpec(repo))'
+#   - julia -e 'using Pkg; repo = Pkg.Types.GitRepo("https://github.com/ryanelandt/NumericalTricks.jl", "master"); Pkg.add(Pkg.Types.PackageSpec(repo))'
+- julia -e 'Pkg.develop(PackageSpec(url="https://github.com/ryanelandt/NumericalTricks.jl.git"))'
 
 #  - if [[ -a .git/shallow ]]; then git fetch --unshallow; fi
 #  - julia -e 'Pkg.clone(pwd()); Pkg.build("Rotations"); Pkg.test("Rotations"; coverage=true)'

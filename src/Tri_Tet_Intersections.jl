@@ -10,7 +10,6 @@ using RigidBodyDynamics.Spatial
 
 
 include("poly_eight.jl")
-# include("types.jl")
 include("utility.jl")
 include("quadrature.jl")
 include("static_clip.jl")
@@ -22,16 +21,9 @@ export
     poly_eight,
     zero_small_coordinates,
 
-    # # types.jl
-    # Tetrahedron,
-    # Tetrahedron3D,
-
     # utility.jl
-    # volume,
     asMatOnePad,
     asMat,
-    # area,
-    # centroid,
 
     # quadrature.jl
     TriTetQuadRule,

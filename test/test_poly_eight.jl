@@ -1,4 +1,31 @@
 
+@testset "centroid" begin
+    p1 = SVector(0.0, 0.0, 0.0)
+    p2 = SVector(1.0, 0.0, 0.0)
+    p3 = SVector(1.0, 1.0, 0.0)
+    p4 = SVector(0.0, 1.0, 0.0)
+
+    cent = centroid( poly_eight(4, (p1, p2, p3, p4, p1, p1, p1, p1)) )
+    @test cent[1] == 1.0
+    @test all(SVector(0.5, 0.5, 0.0) .== cent[2])
+
+    cent = centroid( poly_eight(8, (p1, p2, p3, p4, p1, p1, p1, p1)) )
+    @test cent[1] == 1.0
+    @test all(SVector(0.5, 0.5, 0.0) .== cent[2])
+
+    cent = centroid( poly_eight(5, (p1, p2, p2, p3, p4, p1, p1, p1)) )
+    @test cent[1] == 1.0
+    @test all(SVector(0.5, 0.5, 0.0) .== cent[2])
+
+    cent = centroid( poly_eight(3, (p1, p2, p4, p1, p1, p1, p1, p1)) )
+    @test cent[1] == 0.5
+    @test all(SVector(1/3, 1/3, 0.0) .== cent[2])
+
+    cent = centroid( poly_eight(3, (p1, p2, p2, p1, p1, p1, p1, p1)) )
+    @test cent[1] == 0.0
+    @test !any(isnan.(cent[2]))
+end
+
 @testset "poly_eight" begin
     for i_size = 1:8
         # zero_small_coordinates

@@ -18,10 +18,6 @@ struct poly_eight{N,T}
     function poly_eight(v::NTuple{4,SVector{N,T}}) where {N,T}
         return new{N,T}(4, (v[1], v[2], v[3], v[4], v[1], v[1], v[1], v[1]))
     end
-    function poly_eight(v::SVector{N2,SVector{N,T}}) where {N2,N,T}
-        Base.depwarn("This constructor is depricated, call poly_eight(v.data) instead of poly_eight(v).", :poly_eight)
-        return poly_eight(v.data)
-    end
 end
 
 @inline Base.isempty(p::poly_eight) = (p.n == 0)

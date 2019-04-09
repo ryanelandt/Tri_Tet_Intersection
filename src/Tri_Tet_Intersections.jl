@@ -41,7 +41,6 @@ export
     roll_non_degenerate_tet,
     make_4_sided,
     dist_from_plane,
-    project_into_plane,
-    signed_area
+    project_into_plane
 
 end

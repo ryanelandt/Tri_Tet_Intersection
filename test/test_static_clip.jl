@@ -4,7 +4,7 @@ function minimum_area(p::poly_eight{3,Float64}, n̂::SVector{3,Float64}, r::SVec
     min_area = Inf
     length_clip = length(p)
     for k = 1:length_clip
-        area_k = signed_area(n̂, p[k], p[mod1(k + 1, length_clip)], r)
+        area_k = triangle_area((p[k], p[mod1(k + 1, length_clip)], r), n̂)
         min_area = min(area_k, min_area)
     end
     return min_area
